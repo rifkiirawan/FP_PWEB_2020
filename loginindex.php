@@ -3,7 +3,7 @@
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<style>
+    <style>
         table, td, th {  
           border-bottom: 1px solid #ddd;
           text-align: left;
@@ -21,19 +21,19 @@
         }
 
         th{
-            background-color: lightseagreen;
+            background-color: #cd5d7d;
         }
 
         td{
-          background-color: lightcyan;
+          background-color: #a7c5eb;
         }
 
-        tr:hover {background-color:#f5f5f5;}
+        tr:hover {background-color:#a7c5eb;}
 
         @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
         .header {
           overflow: hidden;
-          background-color:lightseagreen;
+          background-color:#cd5d7d;
           padding: 20px 10px;
           
         }
@@ -54,8 +54,8 @@
         }
 
         .header a.active {
-          background-color:green;
-          color: white;
+          background-color:#a7c5eb;
+          color: black;
         }
 
         .header a.logo {
@@ -94,10 +94,10 @@
             color: white;
             margin-right: 8px;
         }
-    </style>  
+    </style> 
 	<title>Login Page</title>
 </head>
-<body>
+<body style="background-color:#f6ecf0;">
 <div class="header">
       <a href="#default" class="logo">Guest Book</a>
         <div class="header-right">

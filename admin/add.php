@@ -3,12 +3,37 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<style>
+    <style>
         @import "http://fonts.googleapis.com/css?family=Droid+Serif";
-        
+        /* Above line is used for online google font */
+        h2 {
+        text-align:center
+        }
+        hr {
+        margin-bottom:-10px
+        }
+        span {
+        color:red;
+        margin-left:65px
+        }
+        div.main {
+        width:960px;
+        height:655px;
+        margin:50px auto;
+        font-family:'Droid Serif',serif
+        }
+        div.first {
+        width:380px;
+        height:570px;
+        float:left;
+        padding:15px 50px;
+        background:#f8f8ff;
+        box-shadow:0 0 10px gray;
+        margin-top:20px
+        }
         input {
         width:100%;
-        padding:6px;
+        padding:8px;
         margin-top:10px;
         font-size:16px;
         margin-bottom:25px;
@@ -28,15 +53,16 @@
         margin-bottom:15px
         }
         #btn:hover {
-        background-color:#adadad;
+        background-color:lightseagreen;
+        border:2px solid seagreen
         }
 
         @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
         .header {
           overflow: hidden;
-          background-color:lightseagreen;
+          background-color:#cd5d7d;
           padding: 20px 10px;
-          
+          margin-bottom: 100px;
         }
         .header a {
           float: left;
@@ -55,8 +81,8 @@
         }
 
         .header a.active {
-          background-color:green;
-          color: white;
+          background-color:#A7C5EB;
+          color: black;
         }
 
         .header a.logo {
@@ -69,7 +95,7 @@
         }
 
         .error {color: #FF0000;}
-    </style> 
+    </style>
     <title>Add Users</title>
 </head>
 

@@ -10,7 +10,6 @@ else{
   $username = $_SESSION['username'];
 }
 // require_once("../auth.php");
-echo "$_SESSION[username]"; 
 
 // Fetch all users data from database
 $result = mysqli_query($mysqli, "SELECT * FROM guest ORDER BY id DESC");
@@ -39,20 +38,21 @@ $result = mysqli_query($mysqli, "SELECT * FROM guest ORDER BY id DESC");
         }
 
         th{
-            background-color: lightseagreen;
+            background-color: #cd5d7d;
         }
 
         td{
-          background-color: lightcyan;
+          background-color: #a7c5eb;
         }
 
-        tr:hover {background-color:#f5f5f5;}
+        tr:hover {background-color:#a7c5eb;}
 
         @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
         .header {
           overflow: hidden;
-          background-color:lightseagreen;
+          background-color:#cd5d7d;
           padding: 20px 10px;
+          
         }
         .header a {
           float: left;
@@ -71,8 +71,8 @@ $result = mysqli_query($mysqli, "SELECT * FROM guest ORDER BY id DESC");
         }
 
         .header a.active {
-          background-color:green;
-          color: white;
+          background-color:#a7c5eb;
+          color: black;
         }
 
         .header a.logo {
@@ -111,18 +111,13 @@ $result = mysqli_query($mysqli, "SELECT * FROM guest ORDER BY id DESC");
             color: white;
             margin-right: 8px;
         }
-
-        .center {
-          text-align: center;
-          /* margin-top: 10px; */
-        }
-    </style>  
-    <title>Homepage</title>
+    </style>   
+    <title>Homepage Perpustakaan</title>
 </head>
 
-<body>
+<body style="background-color:#f6ecf0;">
     <div class="header">
-      <a href="#default" class="logo">Guest Book</a>
+      <a href="#default" class="logo">Perpustakaan Subarashi</a>
         <div class="header-right">
           <a class="active" href="index.php">Home</a>
           <a href="add.php">Tambah Data Tamu Baru</a>
@@ -146,31 +141,5 @@ $result = mysqli_query($mysqli, "SELECT * FROM guest ORDER BY id DESC");
     }
     ?>
     </table>
-    <div class="center"><h4>TUGAS CHART</h4></div>
-    <div id="chart" style="width:100%"></div>
-
-    <script>
-    function getData() {
-        return Math.floor(Math.random() * Math.floor(1000));
-    }  
-    Plotly.plot('chart',[{
-        y:[getData()],
-        type:'line'
-    }]);
-    
-    var cnt = 0;
-
-    setInterval(function(){
-        Plotly.extendTraces('chart',{ y:[[getData()]]}, [0]);
-        cnt++;
-        if(cnt > 500) {
-            Plotly.relayout('chart',{
-                xaxis: {
-                    range: [cnt-500,cnt]
-                }
-            });
-        }
-    },1000);
-</script>
 </body>
 </html>

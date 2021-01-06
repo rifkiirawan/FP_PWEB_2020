@@ -28,19 +28,19 @@ $result = mysqli_query($mysqli, "SELECT * FROM guest ORDER BY id DESC");
         }
 
         th{
-            background-color: lightseagreen;
+            background-color: #cd5d7d;
         }
 
         td{
-          background-color: lightcyan;
+          background-color: #a7c5eb;
         }
 
-        tr:hover {background-color:#f5f5f5;}
+        tr:hover {background-color:#a7c5eb;}
 
         @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
         .header {
           overflow: hidden;
-          background-color:lightseagreen;
+          background-color:#cd5d7d;
           padding: 20px 10px;
           
         }
@@ -61,8 +61,8 @@ $result = mysqli_query($mysqli, "SELECT * FROM guest ORDER BY id DESC");
         }
 
         .header a.active {
-          background-color:green;
-          color: white;
+          background-color:#a7c5eb;
+          color: black;
         }
 
         .header a.logo {
@@ -105,7 +105,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM guest ORDER BY id DESC");
     <title>Homepage Perpustakaan</title>
 </head>
 
-<body>
+<body style="background-color:#f6ecf0;">
   <!-- cek pesan notifikasi -->
 	<?php 
 	if(isset($_GET['pesan'])){

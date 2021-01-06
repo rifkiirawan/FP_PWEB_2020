@@ -94,7 +94,7 @@ while($user_data = mysqli_fetch_array($result))
         @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
         .header {
           overflow: hidden;
-          background-color:lightseagreen;
+          background-color:#cd5d7d;
           padding: 20px 10px;
           margin-bottom: 100px;
         }
@@ -115,8 +115,8 @@ while($user_data = mysqli_fetch_array($result))
         }
 
         .header a.active {
-          background-color:green;
-          color: white;
+          background-color:#A7C5EB;
+          color: black;
         }
 
         .header a.logo {
@@ -152,7 +152,7 @@ while($user_data = mysqli_fetch_array($result))
     <title>Edit User Data</title>
 </head>
 
-<body>
+<body style="background-color:#f6ecf0;">
 <div class="header">
       <a href="#default" class="logo">Guest Book</a>
         <div class="header-right">
