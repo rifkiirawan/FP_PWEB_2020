@@ -1,108 +1,92 @@
--- phpMyAdmin SQL Dump
--- version 5.0.2
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Jan 06, 2021 at 05:18 AM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.7
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+/*==============================================================*/
+/* DBMS name:      MySQL 5.0                                    */
+/* Created on:     06/01/2021 11:41:49                          */
+/*==============================================================*/
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+alter table PEMINJAMAN 
+   drop foreign key FK_PEMINJAM_BUKU_DIPI_BUKU;
 
---
--- Database: `tugas3`
---
+alter table PEMINJAMAN 
+   drop foreign key FK_PEMINJAM_PELAYAN_P_PETUGAS;
 
--- --------------------------------------------------------
+alter table PEMINJAMAN 
+   drop foreign key FK_PEMINJAM_PEMINJAM_TAMU;
 
---
--- Table structure for table `akun`
---
+drop table if exists BUKU;
 
-CREATE TABLE `akun` (
-  `id` int(2) NOT NULL,
-  `nama` varchar(20) NOT NULL,
-  `username` varchar(20) NOT NULL,
-  `password` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `akun`
---
+alter table PEMINJAMAN 
+   drop foreign key FK_PEMINJAM_BUKU_DIPI_BUKU;
 
-INSERT INTO `akun` (`id`, `nama`, `username`, `password`) VALUES
-(1, 'rifki', 'admin', '8a8bb7cd343aa2ad99b7d762030857a2'),
-(2, 'rifki2', 'rifki', '2a5c4c5a5ba1c332279685ddec507cd9'),
-(3, 'admin perpustakaan', 'adminperpus', '9c4214bd23ec50ef05660951541f364a');
+alter table PEMINJAMAN 
+   drop foreign key FK_PEMINJAM_PEMINJAM_TAMU;
 
--- --------------------------------------------------------
+alter table PEMINJAMAN 
+   drop foreign key FK_PEMINJAM_PELAYAN_P_PETUGAS;
 
---
--- Table structure for table `guest`
---
+drop table if exists PEMINJAMAN;
 
-CREATE TABLE `guest` (
-  `id` int(11) NOT NULL,
-  `nama_pengunjung` varchar(100) NOT NULL,
-  `alamat` varchar(100) NOT NULL,
-  `no_HP` varchar(14) NOT NULL,
-  `tgl_berkunjung` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+drop table if exists PETUGAS;
 
---
--- Dumping data for table `guest`
---
+drop table if exists TAMU;
 
-INSERT INTO `guest` (`id`, `nama_pengunjung`, `alamat`, `no_HP`, `tgl_berkunjung`) VALUES
-(23, 'Bayu', 'Jl.Kurang', '0822401234567', '2020-10-21'),
-(24, 'Rifki', 'Jl.Daerah', '081234567890', '2020-10-21'),
-(25, 'Adrian', 'Jl.Terserah', '0822401234444', '2020-10-21'),
-(27, 'Srabowo', 'Jl.Calon', '08888888888', '2020-10-21'),
-(30, 'Rifki Aulia', 'surabaya', '0822401234567', '2020-10-21'),
-(31, 'Rifki Aulia Irawan', 'surabaya asdf', '0822401234567', '2020-11-06'),
-(34, 'asdfasdf', 'asdfqwer', '0822401234567', '2021-01-05');
+/*==============================================================*/
+/* Table: BUKU                                                  */
+/*==============================================================*/
+create table BUKU
+(
+   B_ID                 int not null  comment '',
+   B_JUDUL              varchar(40)  comment '',
+   B_PENGARANG          varchar(50)  comment '',
+   primary key (B_ID)
+);
 
---
--- Indexes for dumped tables
---
+/*==============================================================*/
+/* Table: PEMINJAMAN                                            */
+/*==============================================================*/
+create table PEMINJAMAN
+(
+   P_ID                 int not null  comment '',
+   PT_ID                int not null  comment '',
+   B_ID                 int not null  comment '',
+   T_ID                 int not null  comment '',
+   P_MULAI              timestamp  comment '',
+   P_SELESAI            date  comment '',
+   ATTRIBUTE_11         varchar(10)  comment '',
+   primary key (P_ID)
+);
 
---
--- Indexes for table `akun`
---
-ALTER TABLE `akun`
-  ADD PRIMARY KEY (`id`);
+/*==============================================================*/
+/* Table: PETUGAS                                               */
+/*==============================================================*/
+create table PETUGAS
+(
+   PT_ID                int not null  comment '',
+   PT_NAMA              varchar(20)  comment '',
+   primary key (PT_ID)
+);
 
---
--- Indexes for table `guest`
---
-ALTER TABLE `guest`
-  ADD PRIMARY KEY (`id`);
+/*==============================================================*/
+/* Table: TAMU                                                  */
+/*==============================================================*/
+create table TAMU
+(
+   T_ID                 int not null  comment '',
+   T_NAMA               varchar(50)  comment '',
+   T_ALAMAT             varchar(100)  comment '',
+   T_PEKERJAAN          varchar(20)  comment '',
+   T_TELEPON            varchar(15)  comment '',
+   T_IMAGEPATH          varchar(100)  comment '',
+   primary key (T_ID)
+);
 
---
--- AUTO_INCREMENT for dumped tables
---
+alter table PEMINJAMAN add constraint FK_PEMINJAM_BUKU_DIPI_BUKU foreign key (B_ID)
+      references BUKU (B_ID) on delete restrict on update restrict;
 
---
--- AUTO_INCREMENT for table `akun`
---
-ALTER TABLE `akun`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+alter table PEMINJAMAN add constraint FK_PEMINJAM_PELAYAN_P_PETUGAS foreign key (PT_ID)
+      references PETUGAS (PT_ID) on delete restrict on update restrict;
 
---
--- AUTO_INCREMENT for table `guest`
---
-ALTER TABLE `guest`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-COMMIT;
+alter table PEMINJAMAN add constraint FK_PEMINJAM_PEMINJAM_TAMU foreign key (T_ID)
+      references TAMU (T_ID) on delete restrict on update restrict;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
