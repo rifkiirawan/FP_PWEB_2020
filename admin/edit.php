@@ -78,7 +78,7 @@ while($user_data = mysqli_fetch_array($result))
         width:100%;
         padding:8px;
         margin-top:10px;
-        background-color:lightseagreen;
+        background-color:#cd5d7d;
         cursor:pointer;
         color:#fff;
         font-size:18px;
