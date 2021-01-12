@@ -1,14 +1,7 @@
-<?php
-// Create database connection using config file
-include_once("config.php");
-
-// Fetch all users data from database
-$result = mysqli_query($mysqli, "SELECT * FROM guest ORDER BY id DESC");
-?>
-
+<!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
         table, td, th {  
@@ -101,66 +94,51 @@ $result = mysqli_query($mysqli, "SELECT * FROM guest ORDER BY id DESC");
             color: white;
             margin-right: 8px;
         }
-    </style>  
-    <title>Homepage Perpustakaan</title>
+    </style> 
+	<title>Login Member Page</title>
 </head>
-
 <body style="background-color:#f6ecf0;">
-  <!-- cek pesan notifikasi -->
+<div class="header">
+      <a href="#default" class="logo">LOGIN MEMBER</a>
+        <div class="header-right">
+          <a href="index.php">Home</a>
+          <a class="active" href="loginMemberindex.php">Login Member</a>
+        </div>
+    </div>
+	<br/>
+	<!-- cek pesan notifikasi -->
 	<?php 
 	if(isset($_GET['pesan'])){
 		if($_GET['pesan'] == "gagal"){
-			echo '<script>alert("Login gagal! username dan password salah!")</script>';
+			echo "Login gagal! username dan password salah!";
 		}else if($_GET['pesan'] == "logout"){
-			echo '<script>alert("Berhasil Logout")</script>';
+			echo "Anda telah berhasil logout";
 		}else if($_GET['pesan'] == "belum_login"){
-			echo "Anda harus login untuk mengakses halaman admin";
+			echo "Anda harus login untuk mengakses halaman member";
 		}
 	}
 	?>
-    <div class="header">
-      <a href="#default" class="logo">Perpustakaan Subarashi</a>
-        <div class="header-right">
-          <a class="active" href="index.php">Home</a>
-          <a href="add.php">Tambah Data Tamu Baru</a>
-          <a href="loginMemberindex.php">Login Member</a>
-          <a href="loginindex.php">Login Admin</a>
-        </div>
-    </div>
-    <?php
-$filecounter="counter.txt";
-$fl=fopen($filecounter,"r+");
-$hit=fread($fl,filesize($filecounter));
-echo("<table width=250 align=center border=1 cellspacing=0 cellpadding=0
-bordercolor=#0000FF><tr>");
-echo("<td width=250 valign=middle align=center>");
-echo("<font face=verdana size=2 color=#FF0000><b>");
-echo("Halo! Selamat datang di Perpustakaan Subarashi! Saat ini anda pengunjung yang ke:");
-echo($hit);
-echo("</b></font>");
-echo("</td>");
-echo("</tr></table>");
-fclose($fl);
-$fl=fopen($filecounter,"w+");
-$hit=$hit+1;
-fwrite($fl,$hit,strlen($hit));
-fclose($fl);
-?>
-
-    <table align="center">
-
-    <tr>
-        <th>Nama Pengunjung</th> <th>Nomor HP</th> <th>Alamat</th> <th>Tanggal Berkunjung</th>
-    </tr>
-    <?php  
-    while($user_data = mysqli_fetch_array($result)) {         
-        echo "<tr>";
-        echo "<td>".$user_data['nama_pengunjung']."</td>";
-        echo "<td>".$user_data['no_HP']."</td>";
-        echo "<td>".$user_data['alamat']."</td>";
-        echo "<td>".substr($user_data['tgl_berkunjung'],-2)."-".substr($user_data['tgl_berkunjung'],5,2)."-".substr($user_data['tgl_berkunjung'],0,4)."</td>";     
-    }
-    ?>
-    </table>
+	<br/>
+	<br/>
+	<form method="post" action="loginMember.php" required>
+		<table width="25%" border="0" align="center" style="margin-top: 30px; font-size:18px;font-weight:700;">
+			<tr>
+				<td>Username</td>
+				<td>:</td>
+				<td><input required type="text" name="T_USERNAME" placeholder="Masukkan username"></td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td>:</td>
+				<td><input required type="password" name="T_PASSWORD" placeholder="Masukkan password"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td><input type="submit" value="LOGIN"></td>
+        <a class="active" href="addMember.php">Daftar Member</a>
+			</tr>
+		</table>			
+	</form>
 </body>
 </html>

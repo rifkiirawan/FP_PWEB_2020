@@ -1,15 +1,25 @@
 <?php
 // Create database connection using config file
-include_once("config.php");
+include_once("../config.php");
+// echo $_SESSION
+session_start();
+if(!isset($_SESSION['T_USERNAME'])){
+  header('location: ../loginMember.php');
+}
+else{
+  $T_USERNAME = $_SESSION['T_USERNAME'];
+}
+// require_once("../auth.php");
 
 // Fetch all users data from database
-$result = mysqli_query($mysqli, "SELECT * FROM guest ORDER BY id DESC");
+$result = mysqli_query($mysqli, "SELECT * FROM Buku WHERE B_STATUS=0 ORDER BY B_ID DESC");
 ?>
 
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="plotly.min.js"></script>
     <style>
         table, td, th {  
           border-bottom: 1px solid #ddd;
@@ -101,64 +111,30 @@ $result = mysqli_query($mysqli, "SELECT * FROM guest ORDER BY id DESC");
             color: white;
             margin-right: 8px;
         }
-    </style>  
+    </style>   
     <title>Homepage Perpustakaan</title>
 </head>
 
 <body style="background-color:#f6ecf0;">
-  <!-- cek pesan notifikasi -->
-	<?php 
-	if(isset($_GET['pesan'])){
-		if($_GET['pesan'] == "gagal"){
-			echo '<script>alert("Login gagal! username dan password salah!")</script>';
-		}else if($_GET['pesan'] == "logout"){
-			echo '<script>alert("Berhasil Logout")</script>';
-		}else if($_GET['pesan'] == "belum_login"){
-			echo "Anda harus login untuk mengakses halaman admin";
-		}
-	}
-	?>
     <div class="header">
-      <a href="#default" class="logo">Perpustakaan Subarashi</a>
+      <a class="logo">Daftar Buku Tersedia</a>
         <div class="header-right">
           <a class="active" href="index.php">Home</a>
-          <a href="add.php">Tambah Data Tamu Baru</a>
-          <a href="loginMemberindex.php">Login Member</a>
-          <a href="loginindex.php">Login Admin</a>
+          <a href="pinjam.php">Pinjam Buku</a>
+          <a href="Logout.php">Logout</a>
         </div>
     </div>
-    <?php
-$filecounter="counter.txt";
-$fl=fopen($filecounter,"r+");
-$hit=fread($fl,filesize($filecounter));
-echo("<table width=250 align=center border=1 cellspacing=0 cellpadding=0
-bordercolor=#0000FF><tr>");
-echo("<td width=250 valign=middle align=center>");
-echo("<font face=verdana size=2 color=#FF0000><b>");
-echo("Halo! Selamat datang di Perpustakaan Subarashi! Saat ini anda pengunjung yang ke:");
-echo($hit);
-echo("</b></font>");
-echo("</td>");
-echo("</tr></table>");
-fclose($fl);
-$fl=fopen($filecounter,"w+");
-$hit=$hit+1;
-fwrite($fl,$hit,strlen($hit));
-fclose($fl);
-?>
 
     <table align="center">
 
     <tr>
-        <th>Nama Pengunjung</th> <th>Nomor HP</th> <th>Alamat</th> <th>Tanggal Berkunjung</th>
+        <th>Judul Buku</th> <th>Nama Pengarang</th>
     </tr>
     <?php  
     while($user_data = mysqli_fetch_array($result)) {         
         echo "<tr>";
-        echo "<td>".$user_data['nama_pengunjung']."</td>";
-        echo "<td>".$user_data['no_HP']."</td>";
-        echo "<td>".$user_data['alamat']."</td>";
-        echo "<td>".substr($user_data['tgl_berkunjung'],-2)."-".substr($user_data['tgl_berkunjung'],5,2)."-".substr($user_data['tgl_berkunjung'],0,4)."</td>";     
+        echo "<td>".$user_data['B_JUDUL']."</td>";
+        echo "<td>".$user_data['B_PENGARANG']."</td>";      
     }
     ?>
     </table>
