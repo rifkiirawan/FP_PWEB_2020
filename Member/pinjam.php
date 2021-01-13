@@ -25,22 +25,6 @@ VALUES (
   0
   );");
 
-
 // After delete redirect to Home, so that latest user list will be displayed.
-// echo "UPDATE buku SET B_Status = 1 where B_id =$id; INSERT INTO `peminjaman` (
-//   `B_ID`, 
-//   `T_USERNAME`, 
-//   `P_MULAI`, 
-//   `P_SELESAI`, 
-//   `P_status`
-//   ) 
-// VALUES (
-//   '$id', 
-//   '$username', 
-//   current_timestamp(), 
-//   date_add(curdate(),interval 7 day), 
-//   0
-//   );";
-// var_dump($result,$result2); die;
 header("Location:index.php");
 ?>

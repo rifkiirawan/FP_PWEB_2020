@@ -5,16 +5,8 @@ include_once("../config.php");
 session_start();
 
 // Fetch all users data from database
-$result = mysqli_query($mysqli, "SELECT * FROM Buku WHERE B_STATUS=0 ORDER BY B_ID DESC");
+$result = mysqli_query($mysqli, "SELECT * FROM peminjaman, member, buku where peminjaman.B_ID = buku.B_id and peminjaman.T_username = member.T_username and peminjaman.p_status = '0'");
 
-$result = mysqli_query($mysqli, "select 
-	member.T_NAMA as 'nama peminjam', 
-	buku.B_JUDUL as 'buku yang dipinjam' 
-from peminjaman, member, buku 
-where 
-	peminjaman.B_ID = buku.B_id 
-	and peminjaman.T_username = member.T_username
-	and peminjaman.p_status = '0'");
 ?>
 
 <html>
@@ -119,24 +111,25 @@ where
 
 <body style="background-color:#f6ecf0;">
     <div class="header">
-      <a class="logo">Daftar Buku Tersedia</a>
+      <a class="logo">Daftar Buku Yang Dipinjam</a>
         <div class="header-right">
           <a class="active" href="index.php">Home</a>
           <a href="Logout.php">Logout</a>
         </div>
     </div>
-
     <table align="center">
-
     <tr>
-        <th>Judul Buku</th> <th>Nama Pengarang</th> <th>Aksi</th>
+        <th>Judul Buku</th> <th>Nama Pengarang</th> <th>Nama Peminjam</th> <th>Tanggal Dipinjam</th> <th>Tanggal Kembali</th> <th>Aksi</th>
     </tr>
     <?php  
     while($user_data = mysqli_fetch_array($result)) {         
         echo "<tr>";
-        echo "<td>".$user_data['member.T_NAMA']."</td>";
-        echo "<td>".$user_data['buku.B_JUDUL']."</td>";
-        echo "<td><a class='update' href='pinjam.php?id=$user_data[B_ID]'>Pinjam</a>";      
+        echo "<td>".$user_data['T_NAMA']."</td>";
+        echo "<td>".$user_data['B_JUDUL']."</td>";
+        echo "<td>".$user_data['T_NAMA']."</td>";
+        echo "<td>".$user_data['P_MULAI']."</td>";
+        echo "<td>".$user_data['P_SELESAI']."</td>";
+        echo "<td><a class='delete' href='kembali.php?id=$user_data[P_ID]'>Kembalikan Buku</a>";  
     }
     ?>
     </table>
