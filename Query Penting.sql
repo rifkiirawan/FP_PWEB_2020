@@ -20,11 +20,11 @@ INSERT INTO `peminjaman` (
 select 
 	member.T_NAMA as 'nama peminjam', 
 	buku.B_JUDUL as 'buku yang dipinjam', 
-	peminjaman.p_status as status 
 from peminjaman, member, buku 
 where 
 	peminjaman.B_ID = buku.B_id 
 	and peminjaman.T_username = member.T_username
+	and status = 0
 	
 update buku
 	set B_Status = 1
