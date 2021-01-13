@@ -39,6 +39,6 @@ select
 from peminjaman, member, buku 
 where 
 	peminjaman.B_ID = buku.B_id 
-	and peminjaman.T_username = member.T_username
+	and peminjaman.T_username = $_SESSION['$T_USERNAME'}
 	and status = 0
 	
