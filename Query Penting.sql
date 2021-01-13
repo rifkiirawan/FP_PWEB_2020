@@ -29,3 +29,5 @@ where
 update buku
 	set B_Status = 1
 	where B_id =$_GET['id'];
+
+select B_judul as 'Judul Buku', B_pengarang as 'Pengarang' where B_status = 0;
