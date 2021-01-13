@@ -108,7 +108,7 @@
         </div>
     </div>
 
-    <form action="addMember.php" method="post" name="addMember" onsubmit="return validateForm()">
+    <form action="addMember.php" method="post" name="addMember" onsubmit="return validateForm()" enctype="multipart/form-data">
         <table width="25%" border="0" align="center" style="margin-top: 30px; font-size:18px;font-weight:700;">
             <tr> 
                 <td>Username :</td>
@@ -150,21 +150,47 @@
 
     // Check If form submitted, insert form data into users table.
     if(isset($_POST['Submit'])) {
-        $T_USERNAME = $_POST['T_USERNAME'];
-        $T_NAMA = $_POST['T_NAMA'];
-        $T_ALAMAT = $_POST['T_ALAMAT'];
-        $T_TELEPON = $_POST['T_TELEPON'];
-        $T_IMAGEPATH = $_POST['T_IMAGEPATH'];
-        $T_PASSWORD = md5($_POST['T_PASSWORD']);
+    // include database connection file
+	include_once("config.php");
+	$status ='';
+    
+    	if(!empty($_FILES["T_IMAGEPATH"]["name"])) { 	
+   
+   			$T_USERNAME = $_POST['T_USERNAME'];
+			$T_NAMA = $_POST['T_NAMA'];
+			$T_ALAMAT = $_POST['T_ALAMAT'];
+			$T_TELEPON = $_POST['T_TELEPON'];
+			$T_PASSWORD = md5($_POST['T_PASSWORD']);
+    		
+		$filename = pathinfo($_FILES['T_IMAGEPATH']['name'], PATHINFO_FILENAME);
+    		
+ 
+		    $image = $_FILES['T_IMAGEPATH']['tmp_name']; 
+		    $imgContent = addslashes(file_get_contents($image)); 
+		 
+		    // Insert image content into database 
+		    // Insert data into table
+			$query = "INSERT INTO member(`T_USERNAME`, `T_NAMA`, `T_ALAMAT`, `T_TELEPON`, `T_IMAGEPATH`,`T_PASSWORD`,`T_IMAGE`) VALUES('$T_USERNAME','$T_NAMA','$T_ALAMAT','$T_TELEPON','$filename','$T_PASSWORD','$imgContent')";
+			$result = mysqli_query($mysqli, $query);
 
-        // include database connection file
-        include_once("config.php");
+		    if($result){ 
+		        $status = 'success'; 
+		        $statusMsg = "File uploaded successfully."; 
+		    }else{ 
+		        $statusMsg = "File upload failed, please try again.";
+		    }  
+		
+	    		
 
-        // Insert user data into table
-        $result = mysqli_query($mysqli, "INSERT INTO member(`T_USERNAME`, `T_NAMA`, `T_ALAMAT`, `T_TELEPON`, `T_IMAGEPATH`,`T_PASSWORD`) VALUES('$T_USERNAME','$T_NAMA','$T_ALAMAT','$T_TELEPON','$T_IMAGEPATH','$T_PASSWORD')");
+			
 
-        echo "User added successfully.";
-    }
+  	}
+  }
+    // Display status message 
+echo $statusMsg;
+echo $fileType;
+echo $status; 
+echo"failed : " .$query .mysqli_error($query); 
     ?>
 </body>
 </html>
