@@ -106,7 +106,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM peminjaman, member, buku where pe
             margin-right: 8px;
         }
     </style>   
-    <title>Homepage Perpustakaan</title>
+    <title>Daftar Buku yang Dipinjam</title>
 </head>
 
 <body style="background-color:#f6ecf0;">
@@ -114,6 +114,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM peminjaman, member, buku where pe
       <a class="logo">Daftar Buku Yang Dipinjam</a>
         <div class="header-right">
           <a class="active" href="index.php">Home</a>
+          <a href="lihatMember.php">Lihat Daftar Member</a>
           <a href="Logout.php">Logout</a>
         </div>
     </div>
@@ -124,8 +125,8 @@ $result = mysqli_query($mysqli, "SELECT * FROM peminjaman, member, buku where pe
     <?php  
     while($user_data = mysqli_fetch_array($result)) {         
         echo "<tr>";
-        echo "<td>".$user_data['T_NAMA']."</td>";
         echo "<td>".$user_data['B_JUDUL']."</td>";
+        echo "<td>".$user_data['B_PENGARANG']."</td>";
         echo "<td>".$user_data['T_NAMA']."</td>";
         echo "<td>".$user_data['P_MULAI']."</td>";
         echo "<td>".$user_data['P_SELESAI']."</td>";

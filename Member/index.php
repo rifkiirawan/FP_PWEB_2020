@@ -112,7 +112,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Buku WHERE B_STATUS=0 ORDER BY B_
             margin-right: 8px;
         }
     </style>   
-    <title>Homepage Perpustakaan</title>
+    <title>Homepage Member Perpustakaan</title>
 </head>
 
 <body style="background-color:#f6ecf0;">

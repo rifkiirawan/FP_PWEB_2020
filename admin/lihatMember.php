@@ -114,6 +114,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM member");
         <div class="header-right">
           <a href="index.php">Home</a>
           <a class="active" href="lihatMember.php">Lihat Daftar Member</a>
+          <a href="buku_dipinjam.php">Pengembalian Buku</a>
           <a href="Logout.php">Logout</a>
         </div>
     </div>
