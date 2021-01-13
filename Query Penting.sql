@@ -1,15 +1,13 @@
 INSERT INTO `peminjaman` (
 		`B_ID`, 
-		`T_USERNAME`, 
-		`PT_ID`, 
+		`T_USERNAME`,
 		`P_MULAI`, 
 		`P_SELESAI`, 
 		`P_status`
 		) 
 	VALUES (
 		'$idbuku', 
-		'$username', 
-		'$petugas', 
+		'$username',
 		current_timestamp(), 
 		date_add(curdate(),interval 7 day), 
 		'dipinjam'
