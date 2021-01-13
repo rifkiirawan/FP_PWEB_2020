@@ -133,8 +133,7 @@
 			$username = $_SESSION['username'];
 
 		$filename = pathinfo($_FILES['T_IMAGEPATH']['name'], PATHINFO_FILENAME);
-    		
- 
+    		 
 		    $image = $_FILES['T_IMAGEPATH']['tmp_name']; 
 		    $imgContent = addslashes(file_get_contents($image)); 
 		 
@@ -162,18 +161,7 @@
 		    }else{ 
 		        $statusMsg = "File upload failed, please try again.";
 		    }  
-		
-	    		
-
-			
-
   	}
-  }
-    // Display status message 
-echo $statusMsg;
-echo $fileType;
-echo $status; 
-echo"failed : " .$query .mysqli_error($query); 
     ?>
 </body>
 </html>
