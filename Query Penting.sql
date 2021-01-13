@@ -33,3 +33,12 @@ update peminjaman
 	where P_id =$_GET['P_id']
 	
 select B_judul as 'Judul Buku', B_pengarang as 'Pengarang' where B_status = 0;
+
+select  
+	buku.B_JUDUL as 'buku yang dipinjam', 
+from peminjaman, member, buku 
+where 
+	peminjaman.B_ID = buku.B_id 
+	and peminjaman.T_username = member.T_username
+	and status = 0
+	
