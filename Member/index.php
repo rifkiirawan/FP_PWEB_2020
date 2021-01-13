@@ -120,7 +120,6 @@ $result = mysqli_query($mysqli, "SELECT * FROM Buku WHERE B_STATUS=0 ORDER BY B_
       <a class="logo">Daftar Buku Tersedia</a>
         <div class="header-right">
           <a class="active" href="index.php">Home</a>
-          <a href="pinjam.php">Pinjam Buku</a>
           <a href="Logout.php">Logout</a>
         </div>
     </div>
@@ -128,13 +127,14 @@ $result = mysqli_query($mysqli, "SELECT * FROM Buku WHERE B_STATUS=0 ORDER BY B_
     <table align="center">
 
     <tr>
-        <th>Judul Buku</th> <th>Nama Pengarang</th>
+        <th>Judul Buku</th> <th>Nama Pengarang</th> <th>Aksi</th>
     </tr>
     <?php  
     while($user_data = mysqli_fetch_array($result)) {         
         echo "<tr>";
         echo "<td>".$user_data['B_JUDUL']."</td>";
-        echo "<td>".$user_data['B_PENGARANG']."</td>";      
+        echo "<td>".$user_data['B_PENGARANG']."</td>";
+        echo "<td><a class='update' href='pinjam.php?id=$user_data[B_ID]'>Pinjam</a>";      
     }
     ?>
     </table>
