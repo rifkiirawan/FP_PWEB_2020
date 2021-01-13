@@ -1,6 +1,3 @@
-select date_add(curdate(),interval 7 day);
-
-
 INSERT INTO `peminjaman` (
 		`B_ID`, 
 		`T_USERNAME`, 
