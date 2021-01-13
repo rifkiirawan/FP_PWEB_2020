@@ -4,17 +4,12 @@ include_once("../config.php");
 // echo $_SESSION
 session_start();
 
+$username =  $_SESSION['T_USERNAME'];
 // Fetch all users data from database
-$result = mysqli_query($mysqli, "SELECT * FROM peminjaman, member, buku where peminjaman.B_ID = buku.B_id and peminjaman.T_username = member.T_username and peminjaman.p_status = '0'");
-
-$result1 = mysqli_query($mysqli, "select 
-	member.T_NAMA as 'nama peminjam', 
-	buku.B_JUDUL as 'buku yang dipinjam' 
-from peminjaman, member, buku 
-where 
-	peminjaman.B_ID = buku.B_id 
-	and peminjaman.T_username = member.T_username
-	and peminjaman.p_status = '0'");
+$result = mysqli_query($mysqli, "SELECT * from peminjaman, buku where peminjaman.B_ID = buku.B_ID and peminjaman.T_username = '$username' and peminjaman.P_STATUS = '0'");
+// echo "'$username;
+// echo "SELECT * from peminjaman, member, buku where peminjaman.B_ID = buku.B_ID and peminjaman.T_username = '$username' and peminjaman.P_STATUS = '0'"; die;
+// var_dump($result); die;
 ?>
 
 <html>
@@ -114,7 +109,7 @@ where
             margin-right: 8px;
         }
     </style>   
-    <title>Homepage Perpustakaan</title>
+    <title>Buku Yang Dipinjam</title>
 </head>
 
 <body style="background-color:#f6ecf0;">
@@ -127,14 +122,13 @@ where
     </div>
     <table align="center">
     <tr>
-        <th>Judul Buku</th> <th>Nama Pengarang</th> <th>Nama Peminjam</th> <th>Tanggal Dipinjam</th> <th>Tanggal Kembali</th>
+        <th>Judul Buku</th> <th>Nama Pengarang</th> <th>Tanggal Dipinjam</th> <th>Tanggal Kembali</th>
     </tr>
-    <?php  
+    <?php
     while($user_data = mysqli_fetch_array($result)) {         
         echo "<tr>";
-        echo "<td>".$user_data['T_NAMA']."</td>";
         echo "<td>".$user_data['B_JUDUL']."</td>";
-        echo "<td>".$user_data['T_NAMA']."</td>";
+        echo "<td>".$user_data['B_PENGARANG']."</td>";
         echo "<td>".$user_data['P_MULAI']."</td>";
         echo "<td>".$user_data['P_SELESAI']."</td>";
     }

@@ -121,7 +121,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM guest ORDER BY id DESC");
         <div class="header-right">
           <a class="active" href="index.php">Home</a>
           <a href="lihatMember.php">Lihat Daftar Member</a>
-          <a href="buku_dipinjam.php">Buku Yang Dipinjam</a>
+          <a href="buku_dipinjam.php">Pengembalian Buku</a>
           <a href="Logout.php">Logout</a>
         </div>
     </div>

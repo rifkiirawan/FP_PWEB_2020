@@ -7,17 +7,6 @@ session_start();
 // Fetch all users data from database
 $result = mysqli_query($mysqli, "SELECT * FROM peminjaman, member, buku where peminjaman.B_ID = buku.B_id and peminjaman.T_username = member.T_username and peminjaman.p_status = '0'");
 
-<<<<<<< HEAD
-=======
-$result1 = mysqli_query($mysqli, "select 
-	member.T_NAMA as 'nama peminjam', 
-	buku.B_JUDUL as 'buku yang dipinjam' 
-from peminjaman, member, buku 
-where 
-	peminjaman.B_ID = buku.B_id 
-	and peminjaman.T_username = member.T_username
-	and peminjaman.p_status = '0'");
->>>>>>> d45bfbc57f490bc54085988a137154d7808f2122
 ?>
 
 <html>
@@ -130,11 +119,7 @@ where
     </div>
     <table align="center">
     <tr>
-<<<<<<< HEAD
         <th>Judul Buku</th> <th>Nama Pengarang</th> <th>Nama Peminjam</th> <th>Tanggal Dipinjam</th> <th>Tanggal Kembali</th> <th>Aksi</th>
-=======
-        <th>Judul Buku</th> <th>Nama Pengarang</th> <th>Nama Peminjam</th> <th>Tanggal Dipinjam</th> <th>Tanggal Kembali</th>
->>>>>>> d45bfbc57f490bc54085988a137154d7808f2122
     </tr>
     <?php  
     while($user_data = mysqli_fetch_array($result)) {         
@@ -144,10 +129,7 @@ where
         echo "<td>".$user_data['T_NAMA']."</td>";
         echo "<td>".$user_data['P_MULAI']."</td>";
         echo "<td>".$user_data['P_SELESAI']."</td>";
-<<<<<<< HEAD
         echo "<td><a class='delete' href='kembali.php?id=$user_data[P_ID]'>Kembalikan Buku</a>";  
-=======
->>>>>>> d45bfbc57f490bc54085988a137154d7808f2122
     }
     ?>
     </table>
