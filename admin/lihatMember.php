@@ -1,8 +1,18 @@
-<!DOCTYPE html>
+<?php
+// Create database connection using config file
+include_once("../config.php");
+// echo $_SESSION
+session_start();
+
+// Fetch all users data from database
+$result = mysqli_query($mysqli, "SELECT * FROM member");
+?>
+
 <html>
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="plotly.min.js"></script>
     <style>
         table, td, th {  
           border-bottom: 1px solid #ddd;
@@ -94,53 +104,36 @@
             color: white;
             margin-right: 8px;
         }
-    </style> 
-	<title>Login Member Page</title>
+    </style>   
+    <title>Daftar Member</title>
 </head>
+
 <body style="background-color:#f6ecf0;">
-<div class="header">
-      <a href="#default" class="logo">LOGIN MEMBER</a>
+    <div class="header">
+      <a href="#default" class="logo">Perpustakaan Subarashi</a>
         <div class="header-right">
           <a href="index.php">Home</a>
-          <a class="active" href="loginMemberindex.php">Login Member</a>
+          <a class="active" href="lihatMember.php">Lihat Daftar Member</a>
+          <a href="Logout.php">Logout</a>
         </div>
     </div>
-	<br/>
-	<!-- cek pesan notifikasi -->
-	<?php 
-	if(isset($_GET['pesan'])){
-		if($_GET['pesan'] == "gagal"){
-			echo "Login gagal! username dan password salah!";
-		}else if($_GET['pesan'] == "logout"){
-			echo "Anda telah berhasil logout";
-		}else if($_GET['pesan'] == "belum_login"){
-			echo "Anda harus login untuk mengakses halaman member";
-		}
-	}
-	?>
-	<br/>
-	<br/>
-	<form method="post" action="loginMember.php" required>
-		<table width="25%" border="0" align="center" style="margin-top: 30px; font-size:18px;font-weight:700;">
-			<tr>
-				<td>Username</td>
-				<td>:</td>
-				<td><input required type="text" name="T_USERNAME" placeholder="Masukkan username"></td>
-			</tr>
-			<tr>
-				<td>Password</td>
-				<td>:</td>
-				<td><input required type="password" name="T_PASSWORD" placeholder="Masukkan password"></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td><input type="submit" value="LOGIN"></td>
-			</tr>
-		</table>
-    <div align="center">
-      <button onClick="window.location.href='addMember.php';">Daftar Member</button>
-    </div>			
-	</form>
+
+    <table align="center">
+
+    <tr>
+        <th>Nama Member</th> <th>Alamat</th> <th>Telepon</th> <th>Foto KTP</th>
+    </tr>
+    <?php  
+    while($user_data = mysqli_fetch_array($result)) {         
+        echo "<tr>";
+        echo "<td>".$user_data['T_NAMA']."</td>";
+        echo "<td>".$user_data['T_ALAMAT']."</td>";
+        echo "<td>".$user_data['T_TELEPON']."</td>";
+        echo "<td>"?><img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['image']); ?>" /><?php "</td>";
+        // echo "<td>".substr($user_data['tgl_berkunjung'],-2)."-".substr($user_data['tgl_berkunjung'],5,2)."-".substr($user_data['tgl_berkunjung'],0,4)."</td>";    
+        // echo "<td><a class='update' href='edit.php?id=$user_data[id]'>Edit</a> <a class='delete' href='delete.php?id=$user_data[id]'>Delete</a></td></tr>";        
+    }
+    ?>
+    </table>
 </body>
 </html>

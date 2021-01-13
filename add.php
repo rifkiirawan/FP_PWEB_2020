@@ -101,7 +101,7 @@
 
 <body>
     <div class="header">
-      <a href="#default" class="logo">Guest Book</a>
+      <a href="#default" class="logo">Tambah Data Tamu</a>
         <div class="header-right">
           <a href="index.php">Home</a>
           <a class="active" href="add.php">Tambah Data Tamu Baru</a>
@@ -146,7 +146,7 @@
         if($nama_pengunjung !=''&& $alamat !=''&& $no_HP !='')
         {
             //  To redirect form on a particular page
-            header("Location:http://localhost/tugaspwebGB/index.php");
+            header("Location:http://localhost/FP_PWEB_2020/index.php");
         }
         // Show message when user added
         // echo "User added successfully.";
