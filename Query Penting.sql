@@ -29,5 +29,9 @@ where
 update buku
 	set B_Status = 1
 	where B_id =$_GET['id'];
-
+	
+update peminjaman
+	set P_Status = 1
+	where P_id =$_GET['P_id']
+	
 select B_judul as 'Judul Buku', B_pengarang as 'Pengarang' where B_status = 0;
