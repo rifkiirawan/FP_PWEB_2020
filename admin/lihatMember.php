@@ -129,7 +129,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM member");
         echo "<td>".$user_data['T_NAMA']."</td>";
         echo "<td>".$user_data['T_ALAMAT']."</td>";
         echo "<td>".$user_data['T_TELEPON']."</td>";
-        echo "<td>"?><img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['image']); ?>" /><?php "</td>";
+        echo "<td>"?><img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($user_data['T_IMAGE']); ?>" /><?php "</td>";
         // echo "<td>".substr($user_data['tgl_berkunjung'],-2)."-".substr($user_data['tgl_berkunjung'],5,2)."-".substr($user_data['tgl_berkunjung'],0,4)."</td>";    
         // echo "<td><a class='update' href='edit.php?id=$user_data[id]'>Edit</a> <a class='delete' href='delete.php?id=$user_data[id]'>Delete</a></td></tr>";        
     }
